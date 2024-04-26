@@ -14,16 +14,20 @@ import java.util.List;
 @Getter
 @Setter
 public class LignedeVente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    @EmbeddedId
+    private LigneDeVenteKey Id;
     private int Quantité;
     private Double PrixUnitaire;
 
-    @ManyToMany(mappedBy = "Lignedevente",fetch = FetchType.EAGER)
-    private List<Vente>ventes=new ArrayList<>();
-    @ManyToMany(mappedBy = "Lignedevente",fetch = FetchType.EAGER)
-    private List<Produit> produits=new ArrayList<>();
+    @ManyToOne
+    @MapsId("produitId")
+    @JoinColumn(name = "produit_id")
+    Produit produit;
+
+    @ManyToOne
+    @MapsId("venteId")
+    @JoinColumn(name = "vente_id")
+    Vente vente;
 
 
 

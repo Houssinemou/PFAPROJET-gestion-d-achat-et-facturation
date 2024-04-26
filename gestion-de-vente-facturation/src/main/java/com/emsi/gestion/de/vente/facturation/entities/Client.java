@@ -6,10 +6,10 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
@@ -18,12 +18,13 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private int Id;
+    private Long Id;
     private String nom;
     private String adresse;
     private String email;
     private int telephone;
     private String historiqueAchats;
+    private String HiVentes;
 
     @ManyToOne
     private Utilisateur utilisateur;
@@ -31,7 +32,26 @@ public class Client {
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
     private List<Vente>ventes=new ArrayList<>();
 
+    public Client(Long id, String nom, String adresse, String email, int telephone, String historiqueAchats, String hiVentes, Utilisateur utilisateur, List<Vente> ventes) {
+        Id = id;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.email = email;
+        this.telephone = telephone;
+        this.historiqueAchats = historiqueAchats;
+        HiVentes = hiVentes;
+        this.utilisateur = utilisateur;
+        this.ventes = ventes;
+    }
 
 
-
+    public Client(Long id, String nom, String email, String adresse, int telephone, String historiqueAchats, String hiVentes) {
+        Id = id;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.email = email;
+        this.telephone = telephone;
+        this.historiqueAchats = historiqueAchats;
+        HiVentes = hiVentes;
+    }
 }

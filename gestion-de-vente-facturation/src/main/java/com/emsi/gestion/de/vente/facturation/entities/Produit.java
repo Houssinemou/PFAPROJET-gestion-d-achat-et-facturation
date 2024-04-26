@@ -3,8 +3,8 @@ package com.emsi.gestion.de.vente.facturation.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -16,7 +16,7 @@ import java.util.List;
 public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private Long Id;
     private String Nom;
     private String Description;
     private Double Prix;
@@ -24,7 +24,6 @@ public class Produit {
     @Lob
     private byte[] image;
 
-    @ManyToMany
-    @JoinTable(name = "Lignedevente")
-    private List<LignedeVente> Lignedevente=new ArrayList<>();
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL , orphanRemoval = true)
+    private Set<LignedeVente> ligneDeVente = new HashSet<>();
 }

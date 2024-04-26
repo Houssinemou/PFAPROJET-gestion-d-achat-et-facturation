@@ -16,7 +16,7 @@ public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private int Id;
+    private Long Id;
     private Date DateFacturation;
     private Double MontantTotal;
     private String StatutPaiement;
