@@ -10,11 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@AllArgsConstructor
 @RestController
 @RequestMapping("/api/client")
 public class ClientController {
 
+    @Autowired
     private ClientService clientService;
     @PostMapping
     public ResponseEntity<ClientDto> createClient(@RequestBody ClientDto clientDto){

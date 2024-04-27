@@ -26,4 +26,16 @@ public class Produit {
 
     @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL , orphanRemoval = true)
     private Set<LignedeVente> ligneDeVente = new HashSet<>();
+
+
+
+    public Produit(Long id, String nom, String description, Double prix, int quantitéEnStock, byte[] image) {
+        Id = id;
+        Nom = nom;
+        Description = description;
+        Prix = prix;
+        QuantitéEnStock = quantitéEnStock;
+        this.image = image;
+
+    }
 }

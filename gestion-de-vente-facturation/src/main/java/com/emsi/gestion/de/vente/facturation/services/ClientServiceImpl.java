@@ -6,6 +6,7 @@ import com.emsi.gestion.de.vente.facturation.exceptions.ResourceNotFoundExceptio
 import com.emsi.gestion.de.vente.facturation.mappers.ClientMapper;
 import com.emsi.gestion.de.vente.facturation.repositories.ClientRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class ClientServiceImpl implements ClientService {
+    @Autowired
    private ClientRepository clientRepository;
 
     @Override
@@ -44,7 +46,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientDto updatecontact(Long clientId, ClientDto updatedclientDto) {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new ResourceNotFoundException("client Does not exist !"));
-// here u ned ot set new fields , like Client.setFIeld(updatedClientDto.getField()); for all content
+
         client.setNom(updatedclientDto.getNom());        client.setEmail(updatedclientDto.getEmail()); client.setAdresse(updatedclientDto.getAdresse());
         client.setTelephone(updatedclientDto.getTelephone());client.setHistoriqueAchats(updatedclientDto.getHistoriqueAchats());
         client.setHiVentes(updatedclientDto.getHiVentes());
