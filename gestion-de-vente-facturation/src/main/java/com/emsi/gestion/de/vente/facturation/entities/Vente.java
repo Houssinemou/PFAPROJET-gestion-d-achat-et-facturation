@@ -32,4 +32,9 @@ public class Vente {
     @OneToMany(mappedBy = "vente", cascade = CascadeType.ALL , orphanRemoval = true)
     private Set<LignedeVente> ligneDeVente = new HashSet<>();
 
+    public Vente(Long id, Date dateVente, String statut) {
+        Id = id;
+        this.dateVente = dateVente;
+        this.statut = statut;
+    }
 }

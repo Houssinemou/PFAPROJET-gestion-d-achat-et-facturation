@@ -28,4 +28,11 @@ public class Facture {
     private Vente vente;
 
 
+    public Facture(Long id, Date dateFacturation, Double montantTotal, String statutPaiement, byte[] PDF) {
+        Id = id;
+        DateFacturation = dateFacturation;
+        MontantTotal = montantTotal;
+        StatutPaiement = statutPaiement;
+        this.PDF = PDF;
+    }
 }
