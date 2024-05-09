@@ -18,7 +18,7 @@ public class ClientDto {
     private String nom;
     private String adresse;
     private String email;
-    private int telephone;
+    private String telephone;
     private String historiqueAchats;
     private String HiVentes;
 

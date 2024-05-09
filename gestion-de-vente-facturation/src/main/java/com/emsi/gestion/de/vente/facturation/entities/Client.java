@@ -22,7 +22,7 @@ public class Client {
     private String nom;
     private String adresse;
     private String email;
-    private int telephone;
+    private String telephone;
     private String historiqueAchats;
     private String HiVentes;
 
@@ -32,7 +32,7 @@ public class Client {
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
     private List<Vente>ventes=new ArrayList<>();
 
-    public Client(Long id, String nom, String adresse, String email, int telephone, String historiqueAchats, String hiVentes, Utilisateur utilisateur, List<Vente> ventes) {
+    public Client(Long id, String nom, String adresse, String email, String telephone, String historiqueAchats, String hiVentes, Utilisateur utilisateur, List<Vente> ventes) {
         Id = id;
         this.nom = nom;
         this.adresse = adresse;
@@ -45,7 +45,7 @@ public class Client {
     }
 
 
-    public Client(Long id, String nom, String email, String adresse, int telephone, String historiqueAchats, String hiVentes) {
+    public Client(Long id, String nom, String email, String adresse, String telephone, String historiqueAchats, String hiVentes) {
         Id = id;
         this.nom = nom;
         this.adresse = adresse;
