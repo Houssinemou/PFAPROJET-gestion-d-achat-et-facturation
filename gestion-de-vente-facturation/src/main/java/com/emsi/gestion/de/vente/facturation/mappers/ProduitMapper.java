@@ -12,7 +12,7 @@ public class ProduitMapper {
                 produit.getNom(),
                 produit.getDescription(),
                 produit.getPrix(),
-                produit.getQuantitéEnStock(),
+                produit.getQuantiteEnStock(),
                 produit.getImage()
         );
     }
@@ -22,7 +22,7 @@ public class ProduitMapper {
                 produitDto.getNom(),
                 produitDto.getDescription(),
                 produitDto.getPrix(),
-                produitDto.getQuantitéEnStock(),
+                produitDto.getQuantiteEnStock(),
                 produitDto.getImage()
         );
     }

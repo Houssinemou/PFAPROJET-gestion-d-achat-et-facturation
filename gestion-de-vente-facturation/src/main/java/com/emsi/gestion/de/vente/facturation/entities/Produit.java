@@ -20,7 +20,7 @@ public class Produit {
     private String Nom;
     private String Description;
     private Double Prix;
-    private int QuantitéEnStock;
+    private int QuantiteEnStock;
     @Lob
     private byte[] image;
 
@@ -29,12 +29,12 @@ public class Produit {
 
 
 
-    public Produit(Long id, String nom, String description, Double prix, int quantitéEnStock, byte[] image) {
+    public Produit(Long id, String nom, String description, Double prix, int quantiteEnStock, byte[] image) {
         Id = id;
         Nom = nom;
         Description = description;
         Prix = prix;
-        QuantitéEnStock = quantitéEnStock;
+        QuantiteEnStock = quantiteEnStock;
         this.image = image;
 
     }

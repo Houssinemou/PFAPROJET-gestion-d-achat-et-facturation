@@ -15,7 +15,7 @@ public class ProduitDto {
     private String Nom;
     private String Description;
     private Double Prix;
-    private int QuantitéEnStock;
+    private int QuantiteEnStock;
     @Lob
     private byte[] image;
 }

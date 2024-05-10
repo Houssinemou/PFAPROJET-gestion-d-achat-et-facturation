@@ -10,7 +10,7 @@ public interface FactureService {
     FactureDto createFacture(FactureDto factureDto);
     List<FactureDto> getAllfacture();
     FactureDto getFactureById(Long factureId);
-    FactureDto updateFacture(Long factureId, FactureDto updatedFactureDto);
+    FactureDto updateFacture(Long factureId, FactureDto factureDto);
     void deleteFacture(Long factureId);
 
 

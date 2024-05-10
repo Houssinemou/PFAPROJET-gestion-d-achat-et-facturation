@@ -16,8 +16,8 @@ import java.util.List;
 public class LignedeVente {
     @EmbeddedId
     private LigneDeVenteKey Id;
-    private int Quantité;
-    private Double PrixUnitaire;
+    private int quantite;
+    private Double prixUnitaire;
 
     @ManyToOne
     @MapsId("produitId")
@@ -29,6 +29,9 @@ public class LignedeVente {
     @JoinColumn(name = "vente_id")
     Vente vente;
 
-
-
+    public LignedeVente(LigneDeVenteKey id, int quantite, Double prixUnitaire) {
+        Id = id;
+        quantite = quantite;
+        prixUnitaire = prixUnitaire;
+    }
 }

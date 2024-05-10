@@ -46,7 +46,7 @@ public class ProduitServiceImpl implements ProduitService{
         produit.setNom(produitDto.getNom());
         produit.setDescription(produitDto.getDescription());
         produit.setPrix(produitDto.getPrix());
-        produit.setQuantitéEnStock(produitDto.getQuantitéEnStock());
+        produit.setQuantiteEnStock(produitDto.getQuantiteEnStock());
         produit.setImage(produitDto.getImage());
 
         Produit Updatedproduit = produitRepository.save(produit);
