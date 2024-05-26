@@ -1,12 +1,12 @@
 package com.emsi.gestion.de.vente.facturation.controllers;
 
 import com.emsi.gestion.de.vente.facturation.dtos.FactureDto;
-import com.emsi.gestion.de.vente.facturation.dtos.ProduitDto;
-import com.emsi.gestion.de.vente.facturation.dtos.VenteDto;
+import com.emsi.gestion.de.vente.facturation.entities.Facture;
 import com.emsi.gestion.de.vente.facturation.services.FactureService;
-import com.emsi.gestion.de.vente.facturation.services.ProduitService;
+import com.emsi.gestion.de.vente.facturation.services.PdfGenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +17,8 @@ import java.util.List;
 public class FactureController {
     @Autowired
     private FactureService factureService;
+    @Autowired
+    private PdfGenerationService pdfGenerationService;
 
     @PostMapping
     public ResponseEntity<FactureDto> createFacture(@RequestBody FactureDto factureDto){
@@ -42,5 +44,11 @@ public class FactureController {
     public ResponseEntity<String> deleteFacture(@PathVariable("id") Long factureId) {
         factureService.deleteFacture(factureId);
         return ResponseEntity.ok("facture deleted successfully.");
+    }
+    @GetMapping({"/{id}/pdf"})
+    public ResponseEntity<byte[]> generatePdfForFacture(@PathVariable Long factureId) {
+        FactureDto facture = this.factureService.getFactureById(factureId);
+        byte[] pdfBytes = this.pdfGenerationService.generatePdf(facture);
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF).body(pdfBytes);
     }
 }

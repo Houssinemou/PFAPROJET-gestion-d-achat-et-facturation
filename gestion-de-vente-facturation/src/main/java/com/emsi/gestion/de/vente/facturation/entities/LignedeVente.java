@@ -16,7 +16,7 @@ import java.util.List;
 public class LignedeVente {
     @EmbeddedId
     private LigneDeVenteKey Id;
-    private int quantite;
+    private int Quantite;
     private Double prixUnitaire;
 
     @ManyToOne
@@ -29,9 +29,9 @@ public class LignedeVente {
     @JoinColumn(name = "vente_id")
     Vente vente;
 
-    public LignedeVente(LigneDeVenteKey id, int quantite, Double prixUnitaire) {
+    public LignedeVente(LigneDeVenteKey id, int Quantite , Double prixUnitaire) {
         Id = id;
-        quantite = quantite;
-        prixUnitaire = prixUnitaire;
+        this.Quantite = Quantite;
+        this.prixUnitaire = prixUnitaire;
     }
 }

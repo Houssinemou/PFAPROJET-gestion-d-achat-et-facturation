@@ -1,8 +1,6 @@
 package com.emsi.gestion.de.vente.facturation.mappers;
 
-import com.emsi.gestion.de.vente.facturation.dtos.ClientDto;
 import com.emsi.gestion.de.vente.facturation.dtos.ProduitDto;
-import com.emsi.gestion.de.vente.facturation.entities.Client;
 import com.emsi.gestion.de.vente.facturation.entities.Produit;
 
 public class ProduitMapper {

@@ -31,4 +31,5 @@ public class LigneDeVenteKey implements Serializable
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+
 }

@@ -12,6 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class LignedeVenteDto {
     private LigneDeVenteKey id;
-    private int quantite;
+    private int Quantite;
     private Double prixUnitaire;
 }

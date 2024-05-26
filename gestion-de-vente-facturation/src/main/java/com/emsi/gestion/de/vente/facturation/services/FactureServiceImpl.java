@@ -46,15 +46,16 @@ public class FactureServiceImpl implements FactureService{
     @Override
     public FactureDto updateFacture(Long factureId, FactureDto factureDto) {
         Facture facture = factureRepository.findById(factureId)
-                .orElseThrow(() -> new ResourceNotFoundException("facture Does not exist !"));
-                facture.setId(factureDto.getId());
-                facture.setDateFacturation(factureDto.getDateFacturation());
-                facture.setMontantTotal(factureDto.getMontantTotal());
-                facture.setStatutPaiement(facture.getStatutPaiement());
-                facture.setPDF(factureDto.getPDF());
+                .orElseThrow(() -> new ResourceNotFoundException("facture does not exist with id: " + factureId));
 
-        Facture Updatedvente = factureRepository.save(facture);
-        return FactureMapper.mapToFactureDto(Updatedvente);
+        // Mettez à jour les champs de la facture avec les valeurs du DTO
+        facture.setDateFacturation(factureDto.getDateFacturation());
+        facture.setMontantTotal(factureDto.getMontantTotal());
+        facture.setStatutPaiement(factureDto.getStatutPaiement());
+        facture.setPDF(factureDto.getPDF());
+
+        Facture updatedFacture = factureRepository.save(facture);
+        return FactureMapper.mapToFactureDto(updatedFacture);
     }
 
     @Override
