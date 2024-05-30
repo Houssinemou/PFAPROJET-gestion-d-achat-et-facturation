@@ -16,7 +16,7 @@ import java.util.List;
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Long;
+    private Long Id;
     private String nom;
     private String email;
     private String motDePasse;

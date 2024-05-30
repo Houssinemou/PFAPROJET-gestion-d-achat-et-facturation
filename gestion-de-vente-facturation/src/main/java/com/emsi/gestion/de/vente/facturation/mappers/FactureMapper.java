@@ -12,7 +12,8 @@ public class FactureMapper {
                 facture.getDateFacturation(),
                 facture.getMontantTotal(),
                 facture.getStatutPaiement(),
-                facture.getPDF()
+                facture.getPDF(),
+                facture.getVente().getId()
 
 
         );

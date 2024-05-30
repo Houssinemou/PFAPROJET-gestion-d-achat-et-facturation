@@ -11,6 +11,7 @@ import com.emsi.gestion.de.vente.facturation.mappers.ProduitMapper;
 import com.emsi.gestion.de.vente.facturation.mappers.VenteMapper;
 import com.emsi.gestion.de.vente.facturation.repositories.FactureRepository;
 import com.emsi.gestion.de.vente.facturation.repositories.ProduitRepository;
+import com.emsi.gestion.de.vente.facturation.repositories.VenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +22,30 @@ import java.util.stream.Collectors;
 public class FactureServiceImpl implements FactureService{
     @Autowired
     private FactureRepository factureRepository;
+    @Autowired
+    private VenteRepository venteRepository;
     @Override
     public FactureDto createFacture(FactureDto factureDto) {
-        Facture facture = FactureMapper.mapToFacture(factureDto);
-        Facture savedFacture=factureRepository.save(facture);
-
-
+        Facture savedFacture;
+        if(factureDto.getVente_id()==null)
+        {
+            Facture facture = FactureMapper.mapToFacture(factureDto);
+            savedFacture=factureRepository.save(facture);
+        }else {
+            Vente vente = venteRepository.findById(factureDto.getVente_id())
+                    .orElseThrow(() -> new ResourceNotFoundException("Vente does not exist with id: " + factureDto
+                            .getVente_id()));
+            Facture facture = new Facture(
+                    factureDto.getDateFacturation(),
+                    factureDto.getMontantTotal(),
+                    factureDto.getStatutPaiement(),
+                    factureDto.getPDF()
+            );
+            facture.setVente(null);
+            facture.setVente(vente);
+            vente.setFacture(facture);
+            savedFacture = factureRepository.save(facture);
+        }
         return FactureMapper.mapToFactureDto(savedFacture);
     }
 

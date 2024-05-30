@@ -10,14 +10,14 @@ public class VenteMapper {
         return new VenteDto(
                 vente.getId(),
                 vente.getDateVente(),
-                vente.getStatut()
+                vente.getStatut(),
+                vente.getClient().getId()
 
 
         );
     }
     public static Vente mapToVente(VenteDto venteDto) {
         return new Vente(
-                venteDto.getId(),
                 venteDto.getDateVente(),
                 venteDto.getStatut()
         );

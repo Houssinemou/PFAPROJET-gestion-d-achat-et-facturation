@@ -19,5 +19,13 @@ public class FactureDto {
     @Lob
     private byte[] PDF;
 
-
+    private Long vente_id;
+    public FactureDto(Long id, Date dateFacturation, Double montantTotal, String statutPaiement, byte[] pDF) {
+        Id = id;
+        DateFacturation = dateFacturation;
+        MontantTotal = montantTotal;
+        StatutPaiement = statutPaiement;
+        PDF = pDF;
+        vente_id=null;
+    }
 }

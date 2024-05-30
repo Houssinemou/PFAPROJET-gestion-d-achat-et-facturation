@@ -2,11 +2,13 @@ package com.emsi.gestion.de.vente.facturation.services;
 
 import com.emsi.gestion.de.vente.facturation.dtos.ProduitDto;
 import com.emsi.gestion.de.vente.facturation.dtos.VenteDto;
+import com.emsi.gestion.de.vente.facturation.entities.Client;
 import com.emsi.gestion.de.vente.facturation.entities.Produit;
 import com.emsi.gestion.de.vente.facturation.entities.Vente;
 import com.emsi.gestion.de.vente.facturation.exceptions.ResourceNotFoundException;
 import com.emsi.gestion.de.vente.facturation.mappers.ProduitMapper;
 import com.emsi.gestion.de.vente.facturation.mappers.VenteMapper;
+import com.emsi.gestion.de.vente.facturation.repositories.ClientRepository;
 import com.emsi.gestion.de.vente.facturation.repositories.ProduitRepository;
 import com.emsi.gestion.de.vente.facturation.repositories.VenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,27 @@ import java.util.stream.Collectors;
 public class VenteServiceImpl implements VenteService{
     @Autowired
     private VenteRepository venteRepository;
+    @Autowired
+    private ClientRepository clientRepository;
     @Override
     public VenteDto createVente(VenteDto venteDto) {
-        Vente vente = VenteMapper.mapToVente(venteDto);
-        Vente savedVente=venteRepository.save(vente);
+        Vente savedVente;
+        if(venteDto.getClient_id()==null) {
+            Vente vente = VenteMapper.mapToVente(venteDto);
+            savedVente = venteRepository.save(vente);
+        }else {
+            Client client =clientRepository.findById(venteDto.getClient_id())
+                    .orElseThrow(()-> new ResourceNotFoundException("Client does not exist with id: "+venteDto.getClient_id()));
+
+            Vente vente =new Vente(
+                    venteDto.getDateVente(),
+                    venteDto.getStatut()
+            );
+            vente.setClient(null);
+            vente.setClient(client);
+            savedVente = venteRepository.save(vente);
+
+        }
 
 
         return VenteMapper.mapToVenteDto(savedVente);

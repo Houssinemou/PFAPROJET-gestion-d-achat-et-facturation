@@ -15,4 +15,7 @@ public class VenteDto {
     private Long Id;
     private Date dateVente;
     private String statut;
+    private Long client_id;
+
+
 }

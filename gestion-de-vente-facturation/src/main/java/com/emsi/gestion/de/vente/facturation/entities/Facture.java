@@ -35,4 +35,11 @@ public class Facture {
         StatutPaiement = statutPaiement;
         this.PDF = PDF;
     }
+
+    public Facture(Date dateFacturation, Double montantTotal, String statutPaiement, byte[] pdf) {
+        DateFacturation = dateFacturation;
+        MontantTotal = montantTotal;
+        StatutPaiement = statutPaiement;
+        this.PDF = PDF;
+    }
 }
