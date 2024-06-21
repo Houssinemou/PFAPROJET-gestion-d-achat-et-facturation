@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    private UtilisateurRepository userRepository;
+    private final UtilisateurRepository userRepository;
 
     @Autowired
     public CustomUserDetailsService(UtilisateurRepository userRepository) {
@@ -27,10 +27,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Utilisateur user=userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
-        return new User(user.getUsername(),user.getMotDePasse(),mapRolesToAuthorities(user.getRoles()));
+        Utilisateur user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+        return new User(user.getUsername(), user.getMotDePasse(), mapRolesToAuthorities(user.getRoles()));
     }
-    private Collection<GrantedAuthority> mapRolesToAuthorities(List<Role> roles){
+
+    private Collection<GrantedAuthority> mapRolesToAuthorities(List<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 }
